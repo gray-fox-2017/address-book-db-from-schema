@@ -1,19 +1,19 @@
 
 var createTableContact =
-"CREATE TABLE IF NOT EXISTS Contacts (id INTEGER PRIMARY KEY AUTOINCREMENT, "+
+"CREATE TABLE IF NOT EXISTS Contacts (id INTEGER PRIMARY KEY, "+
 "name VARCHAR(100)," +
 "company VARCHAR(100), phone_number VARCHAR(100), email VARCHAR(100));";
 
 var createTableGroup =
-"CREATE TABLE IF NOT EXISTS Groups (id INTEGER PRIMARY KEY AUTOINCREMENT, "+
+"CREATE TABLE IF NOT EXISTS Groups (id INTEGER PRIMARY KEY, "+
 "name VARCHAR(100));";
 
 var createTableConjungtion =
-"CREATE TABLE IF NOT EXISTS Contacts_Groups (id INTEGER PRIMARY KEY AUTOINCREMENT, "+
+"CREATE TABLE IF NOT EXISTS Contacts_Groups (id INTEGER PRIMARY KEY, "+
 "contact_id INTEGER, group_id INTEGER);";
 
-var seedContact = "INSERT INTO Contacts (name, company, phone_number, email) VALUES ('Fajar', 'Kebon Sirih Inc', '089-89781800', 'fajar@gmail.com');";
-var seedGroup = "INSERT INTO Groups (name) VALUES ('Kebon Sirih Inc');";
+var seedContact = "INSERT INTO Contacts (id, name, company, phone_number, email) VALUES (1, 'Fajar', 'Kebon Sirih Inc', '089-89781800', 'fajar@gmail.com');";
+var seedGroup = "INSERT INTO Groups (id, name) VALUES (1, 'Kebon Sirih Inc');";
 
 const repl = require('repl');
 const sqlite = require('sqlite3').verbose();
