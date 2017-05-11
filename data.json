@@ -1,0 +1,24 @@
+{
+  "contacts": [{ "first_name": "Ambo",
+                 "last_name": "Dalle",
+                 "phone": "088981410308",
+                 "email": "ambo@gmail.com",
+                 "created_at": "10-04-2017"
+               },
+               { "first_name": "Fath",
+                 "last_name": "Aydin",
+                 "phone": "0897665544",
+                 "email": "fath@hacktiv8.com",
+                 "created_at": "10-04-2017"}],
+  "groups": [{"group_name": "Gray Fox",
+              "created_at": "8-05-2017"
+             },
+             {"group_name": "FireFox",
+             "created_at": "8-05-2017"}],
+
+  "group_contacts": [{ "contact_id": "1",
+                       "group_id": "1"
+                     },
+                     { "contact_id": "2",
+                       "group_id": "2"}]
+}
