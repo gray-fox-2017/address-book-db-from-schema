@@ -75,13 +75,29 @@ class Contact {
     }
   }
 
+  list_join(){
+    var LIST_JOIN = `SELECT contacts.firstname, contacts.phone, groups.group_name FROM contacts,contacts_groups ON contacts.id = contacts_groups.contact_id ,groups ON contacts_groups.group_id = groups.id ;`;
+    db.serialize(function(){
+      db.all(LIST_JOIN, function(err, rows){
+        if(err){
+          console.log("Error List",err);
+        } else {
+          rows.forEach(function(row) {
+            console.log(row);
+          })
+        }
+      })
+    })
+  }
+
 }
 // Rilis 1, minus update dan ID; only can be used once
-// let test = new Contact({firstname : "Bambang", phone : "081234907"})
+let test = new Contact({firstname : "Bambang", phone : "081234907"})
 // console.log(test.firstname);
-// test.save();
+test.save();
 // test.firstname = "Mulyadi";
 // test.update_firstname_by_id(4);
 // test.save();
 // test.list_contact()
 // test.delete_contact_by_id(4);
+test.list_join()
