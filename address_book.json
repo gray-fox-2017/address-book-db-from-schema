@@ -1,0 +1,37 @@
+{
+
+  "Contacts":[{
+      "name": "Ade anugerah",
+      "company": "hacktiv8",
+      "telp_number": "0211234567",
+      "email": "adeanugerah@yahoo.com"
+    },
+    {
+      "name": "erwin",
+      "company": "hacktiv8",
+      "telp_number": "0211234678",
+      "email": "erwin@yahoo.com"
+    },
+    {
+      "name": "tirta",
+      "company": "hacktiv8",
+      "telp_number": "0211234678",
+      "email": "tirta@yahoo.com"
+    }],
+
+  "Groups":[{"name": "instructor"},{"name": "student"}],
+
+  "Contact_Groups":[{
+      "contact_id": 1,
+      "group_id": 1
+    },
+    {
+      "contact_id": 2,
+      "group_id": 2
+    },
+    {
+      "contact_id": 3,
+      "group_id": 1
+    }]
+
+}
