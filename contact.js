@@ -7,9 +7,9 @@ let db = new sqlite.Database(file);
 
 let replServer = repl.start('>> ');
 
-class Contacts {
+ class Contacts {
 
-    addData(name,company,telp_number,email){
+    static addData(name,company,telp_number,email){
       let addData = `INSERT INTO contacts(name,company,telp_number,email)
                  VALUES('${name}','${company}','${telp_number}','${email}');`;
       db.serialize(function(){
@@ -23,7 +23,7 @@ class Contacts {
       });
     }
 
-    updateData(id,name,company,telp_number,email){
+    static updateData(id,name,company,telp_number,email){
       let updateData = `UPDATE contacts SET name = '${name}', company = '${company}', telp_number = '${telp_number}', email = '${email}'
                         WHERE contacts.id = '${id}';`;
       db.serialize(function(){
@@ -37,7 +37,7 @@ class Contacts {
       });
     }
 
-    deleteData(id){
+    static deleteData(id){
       let deleteData = `DELETE FROM contacts WHERE contacts.id = '${id}'`;
       db.serialize(function(){
         db.run(deleteData,function(err){
@@ -50,22 +50,28 @@ class Contacts {
       });
     }
 
-    showData(){
+    static showData(){
       let showData = `SELECT * FROM contacts`;
       db.serialize(function(){
-        db.all(showData, function(err,row){
+        db.all(showData, function(err,rows){
           if (err) {
             console.log(err);
           }else {
-            console.log(showData);
+            console.log(rows);
           }
         });
       });
     }
 
-    help(){
+    static help(){
       let help = `addData(name,company,telp_number,email)\n updateData(id,name,company,telp_number,email)\n deleteData(id)\n showData()`;
       console.log(help);
     }
 
 }
+
+replServer.context.addData = Contacts.addData;
+replServer.context.updateData = Contacts.updateData;
+replServer.context.deleteData = Contacts.deleteData;
+replServer.context.showData = Contacts.showData;
+replServer.context.help = Contacts.help;
