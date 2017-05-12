@@ -24,6 +24,7 @@ function serializeRun(query, message){
   });
 }
 
+
 function serializeAll(query){
   db.serialize(function(){
   db.all(query, function(err, rows){
@@ -71,7 +72,7 @@ class Contact {
 
   save(){
     let query = `INSERT INTO contacts (name) VALUES ('${this._name}')`
-    serializeRun(query, 'Data berhasil ditambahkan.')
+    serializeRun(query, 'Data berhasil ditambahkan')
   }
 
   getAllData(){
@@ -84,5 +85,5 @@ var contact = new Contact({name: 'Alex'})
 // contact.id
 // contact.save()
 // contact.id
-replServer.context.getAllData = contact.getAllData;
+replServer.context.contact = contact;
 // console.log(contact.id)
