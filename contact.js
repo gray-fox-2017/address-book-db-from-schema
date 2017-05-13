@@ -32,7 +32,7 @@ function serializeAll(query){
       console.log(err);
     } else {
       if(rows.length == 0){
-        console.log('tidak ada daftar');
+        console.log(null);
       } else{
         for(let i=0; i<rows.length; i++){
           console.log('\n');
@@ -50,40 +50,63 @@ function serializeAll(query){
 
 class Contact {
   constructor(option){
-    this._name = option.name
-    this._id = null
-    this._company = null
-    this._telp_number = null
-    this._email = null
-  }
-
-  get name(){
-    return this._name
-  }
-
-  set name(option){
-    this._name = option.name
-    return this._name
-  }
-
-  get id(){
-    return this._id
+    this.originName = option.name
+    this.name = option.name
   }
 
   save(){
-    let query = `INSERT INTO contacts (name) VALUES ('${this._name}')`
-    serializeRun(query, 'Data berhasil ditambahkan')
+    if(this.originName == this.name){
+      let query = `INSERT INTO contacts (name) VALUES ('${this.name}')`
+      serializeRun(query, 'Data berhasil ditambahkan')
+    } else {
+      let query = `UPDATE contacts SET name = '${this.name}' where id = '${this.id}'`
+      serializeRun(query, 'Data berhasil diedit')
+    }
   }
 
-  getAllData(){
+  get id(){
+    let query = `select * from contacts where name = '${this.name}'`
+    db.serialize(function(){
+      db.all(query, function(err, rows){
+        if (err) {
+          console.log(err);
+        } else {
+          if(rows.length == 0){
+            console.log(null);
+            return null
+          } else{
+            console.log(`ID: ${rows[0].id}`)
+          }
+        }
+      });
+    })
+  }
+
+  static All(){
     let query = 'select * from contacts'
     serializeAll(query)
   }
+
+  static create(name, company, telp_number, email) {
+    let query = `INSERT INTO contacts (name, company, telp_number, email) VALUES ('${name}', '${company}', '${telp_number}', '${email}')`
+    serializeRun(query, 'Data berhasil ditambahkan')
+  }
+
+  static update(id, attr, value) {
+    let query = `UPDATE contacts SET ${attr} = '${value}' WHERE id = ${id}`
+    serializeRun(query, 'Data berhasil diedit')
+  }
+
+  static delete(id){
+    let query = `DELETE FROM contacts where id = ${id}`
+    serializeRun(query, 'Data berhasil dihapus')
+  }
 }
 
-var contact = new Contact({name: 'Alex'})
+var contact = new Contact({name: 'Helo'})
 // contact.id
 // contact.save()
 // contact.id
 replServer.context.contact = contact;
+replServer.context.Contact = Contact;
 // console.log(contact.id)
