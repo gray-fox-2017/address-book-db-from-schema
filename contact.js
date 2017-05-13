@@ -1,14 +1,6 @@
 "use strict"
 
-const repl = require('repl');
 const sqlite = require('sqlite3').verbose();
-
-let replServer = repl.start({
-  prompt: '>> ',
-  input: process.stdin,
-  output: process.stdout
-});
-
 var file= 'contacts.db';
 var db= new sqlite.Database(file);
 
@@ -23,29 +15,27 @@ function serializeRun(query, message){
     });
   });
 }
-
-
 function serializeAll(query){
   db.serialize(function(){
-  db.all(query, function(err, rows){
-    if (err) {
-      console.log(err);
-    } else {
-      if(rows.length == 0){
-        console.log(null);
-      } else{
-        for(let i=0; i<rows.length; i++){
-          console.log('\n');
-          console.log(`${i+1}.  Nama: ${rows[i].name}`)
-          console.log(`    ID: ${rows[i].id}`)
-          console.log(`    Company: ${rows[i].company}`)
-          console.log(`    Phone: ${rows[i].telp_number}`)
-          console.log(`    Email: ${rows[i].email}\n`)
+    db.all(query, function(err, rows){
+      if (err) {
+        console.log(err);
+      } else {
+        if(rows.length == 0){
+          console.log(null);
+        } else{
+          for(let i=0; i<rows.length; i++){
+            console.log('\n');
+            console.log(`${i+1}.  Nama: ${rows[i].name}`)
+            console.log(`    ID: ${rows[i].id}`)
+            console.log(`    Company: ${rows[i].company}`)
+            console.log(`    Phone: ${rows[i].telp_number}`)
+            console.log(`    Email: ${rows[i].email}\n`)
+          }
         }
       }
-    }
-  });
-})
+    });
+  })
 }
 
 class Contact {
@@ -103,10 +93,5 @@ class Contact {
   }
 }
 
-var contact = new Contact({name: 'Helo'})
-// contact.id
-// contact.save()
-// contact.id
-replServer.context.contact = contact;
-replServer.context.Contact = Contact;
-// console.log(contact.id)
+
+module.exports = Contact;
