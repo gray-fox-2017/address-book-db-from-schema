@@ -1,40 +1,24 @@
-[{"id": 1,
-  "name" : "Karim",
+[ {"name" : "Karim",
   "phone_number": "085-535-535",
-  "email" : "fajar@gmail.com"
-  },
-  {"id": 2,
-  "name" : "Rojak",
+  "email" : "fajar@gmail.com"},
+  {"name" : "Rojak",
   "phone_number": "085-555-111",
-  "email" : "rojak@gmail.com"
-  },
-  {"id": 3,
-  "name" : "Budi",
+  "email" : "rojak@gmail.com"},
+  {"name" : "Budi",
   "phone_number": "085-555-222",
-  "email" : "fajar@gmail.com"
-  },
-  {"id": 4,
-  "name" : "Butet",
+  "email" : "fajar@gmail.com"},
+  {"name" : "Butet",
   "phone_number": "085-555-333",
-  "email" : "Butet@gmail.com"
-  },
-  {"id": 5,
-  "name" : "Joni",
+  "email" : "Butet@gmail.com"},
+  {"name" : "Joni",
   "phone_number": "085-555-444",
-  "email" : "Joni@gmail.com"
-  },
-  {"id": 6,
-  "name" : "Walker",
+  "email" : "Joni@gmail.com"},
+  {"name" : "Walker",
   "phone_number": "085-535-556",
-  "email" : "Tony@gmail.com"
-  },
-  {"id": 7,
-  "name" : "Asep",
+  "email" : "Tony@gmail.com"},
+  {"name" : "Asep",
   "phone_number": "085-535-777",
-  "email" : "asep@gmail.com"
-  },
-  {"id": 8,
-  "name" : "Adlis",
+  "email" : "asep@gmail.com"},
+  {"name" : "Adlis",
   "phone_number": "085-535-999",
-  "email" : "adlis@gmail.com"
-  }]
+  "email" : "adlis@gmail.com"}]
