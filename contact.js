@@ -5,22 +5,28 @@ const sqlite = require('sqlite3').verbose();
 let file = 'address_book.db';
 let db = new sqlite.Database(file);
 
-let replServer = repl.start('>> ');
+// let replServer = repl.start('>> ');
 
- class Contacts {
+ export class Contacts {
 
     static addData(name,company,telp_number,email){
-      let addData = `INSERT INTO contacts(name,company,telp_number,email)
-                 VALUES('${name}','${company}','${telp_number}','${email}');`;
-      db.serialize(function(){
-        db.run(addData, function(err){
-          if (err) {
-            console.log(err);
-          }else {
-            console.log(addData);
-          }
+      let regexPhone = /^\d{10,13}$/;
+      // let regexEmail = ;
+      if(regexPhone.test(phone) === false){
+        console.log("Incorrect phone. Please input numbers between 10-13 length.");
+      }else {
+        let addData = `INSERT INTO contacts(name,company,telp_number,email)
+                   VALUES('${name}','${company}','${telp_number}','${email}');`;
+        db.serialize(function(){
+          db.run(addData, function(err){
+            if (err) {
+              console.log(err);
+            }else {
+              console.log(addData);
+            }
+          });
         });
-      });
+      }
     }
 
     static updateData(id,name,company,telp_number,email){
@@ -70,8 +76,8 @@ let replServer = repl.start('>> ');
 
 }
 
-replServer.context.addData = Contacts.addData;
-replServer.context.updateData = Contacts.updateData;
-replServer.context.deleteData = Contacts.deleteData;
-replServer.context.showData = Contacts.showData;
-replServer.context.help = Contacts.help;
+// replServer.context.addData = Contacts.addData;
+// replServer.context.updateData = Contacts.updateData;
+// replServer.context.deleteData = Contacts.deleteData;
+// replServer.context.showData = Contacts.showData;
+// replServer.context.help = Contacts.help;

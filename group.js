@@ -5,7 +5,7 @@ const sqlite = require('sqlite3').verbose();
 let file = "address_book.db";
 let db = new sqlite.Database(file);
 
- class Groups {
+ export class Groups {
 
   static insertGroup(name){
     let add = `INSERT INTO groups(name) VALUES('${name}')`;
@@ -70,9 +70,9 @@ let db = new sqlite.Database(file);
 
 }
 
-let replServer = repl.start('>> ');
-replServer.context.insertGroup = Groups.insertGroup;
-// replServer.context.updateGroup = Groups.updateGroup;
-// replServer.context.deleteGroup = Groups.deleteGroup;
-replServer.context.showGroup = Groups.showGroup;
-replServer.context.help = Groups.help;
+// let replServer = repl.start('>> ');
+// replServer.context.insertGroup = Groups.insertGroup;
+// // replServer.context.updateGroup = Groups.updateGroup;
+// // replServer.context.deleteGroup = Groups.deleteGroup;
+// replServer.context.showGroup = Groups.showGroup;
+// replServer.context.help = Groups.help;
