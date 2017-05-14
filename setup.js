@@ -1,4 +1,4 @@
-"use strict"
+"use strict";
 
 const sqlite = require('sqlite3').verbose();
 
@@ -11,8 +11,8 @@ var CREATE_GROUPS = `CREATE TABLE IF NOT EXISTS groups (id INTEGER PRIMARY KEY A
 var CREATE_GROUPS_CONTACTS = `CREATE TABLE IF NOT EXISTS groups_contacts (id INTEGER PRIMARY KEY AUTOINCREMENT, contact_id INTEGER, group_id INTEGER, FOREIGN KEY(contact_id) REFERENCES contacts(id), FOREIGN KEY(group_id) REFERENCES groups(id))`;
 
 class Setup {
-  constructor (file) {
-    this.connection = new sqlite.Database(file)
+  constructor () {
+    this.connection = new sqlite.Database('address_book.db');
   }
 
   createTables() {
@@ -31,7 +31,7 @@ class Setup {
   }
 }
 
-let setup = new Setup('./address_book.db');
-setup.createTables();
+//let setup = new Setup('./address_book.db');
+//setup.createTables();
 
 module.exports = Setup;
