@@ -1,4 +1,6 @@
 [
+  {"name": "Priambodo Kurniawan", "company" : "Front End SJT", "telp_number": "08114452254", "email": "iam@hacktiv8.com"},
+  {"name": "Jhon Doe", "company" : "Doe Corp", "telp_number": "081122545544", "email": "doejohn@hacktiv8.com"},
   {"name": "James Wijaya", "company" : "Bahagia", "telp_number": "0811225544", "email": "james@hacktiv8.com"},
   {"name": "Philicia Octa", "company" : "makeup-ochill", "telp_number": "08554647788", "email": "philicia@makeup.com"}
 ]

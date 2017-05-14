@@ -26,7 +26,7 @@ function serializeAll(query){
         } else{
           for(let i=0; i<rows.length; i++){
             console.log(`${i+1}.  ID Contact: ${rows[i].contact_id}`)
-            console.log(`${i+1}.  ID Group: ${rows[i].group_id}`)
+            console.log(`    ID Group: ${rows[i].group_id} \n`)
           }
         }
       }
