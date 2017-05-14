@@ -65,7 +65,7 @@ class Contact {
     });
   }
 
-  static showContact(db, id) {
+  static show(db, id) {
     let query = `SELECT contacts.id as id, contacts.name as Name, contacts.telp_number as Phone, contacts.email as Email, contacts.company as Company, groups.name as GroupName FROM contacts LEFT OUTER JOIN groups_contacts ON contacts.id = groups_contacts.contact_id LEFT OUTER JOIN groups ON groups.id = groups_contacts.group_id WHERE contacts.id = ${id}`;
     db.serialize( () => {
       db.all(query, (err, rows) => {

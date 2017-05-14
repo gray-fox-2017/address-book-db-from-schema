@@ -37,7 +37,7 @@ class Group {
     });
   }
 
-  static showGroup(db, id) {
+  static show(db, id) {
     let query = `SELECT groups.id as id, groups.name as Name, contacts.name as ContactName FROM contacts LEFT OUTER JOIN groups_contacts ON contacts.id = groups_contacts.contact_id LEFT OUTER JOIN groups ON groups.id = groups_contacts.group_id WHERE groups.id = ${id}`;
     db.serialize( () => {
       db.all(query, (err, rows) => {
