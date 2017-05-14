@@ -147,7 +147,7 @@ class Contact {
   }
 
   static emailValid(email){
-    let emailAddress = /\w{3,30}\@\w{3,20}\.\w{2,10}/
+    let emailAddress = /\w{3,30}.\w{3,30}\@\w{3,20}\.\w{2,10}/
     return emailAddress.test(email)
   }
 }
