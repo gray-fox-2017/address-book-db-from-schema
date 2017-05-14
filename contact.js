@@ -15,26 +15,23 @@ var table2 = new Table({
     head: ['ID', 'NAME', 'COMPANY', 'TELP NUMBER', 'EMAIL', 'ID GROUP','GROUP NAME', 'GROUP CONTACT ID']
   //, colWidths: [5, 15, 15, 15, 15]
 });
- 
+
 class Contact {
-  constructor() {
-
+  constructor(id, name, company, telp_number, email) {
+    this.id = id
+    this.name = name
+    this.company = company
+    this.telp_number = telp_number
+    this.email = email
   }
-  save() {
-    let id = this.id;
-    name = this.name,
-    company = this.company,
-    telp_number = this.telp_number,
-    email = this.email,
-    obj = this;
-
-    if (id === null) {
+  static save() {
+    if (this.id === null) {
       db.serialize(function() {
         db.run(`INSERT INTO contacts (name, company, telp_number, email) VALUES ('${name}', '${company}', '${telp_number}', '${email}');`,function(err) {
           if (err) {
             console.log(err);
           } else {
-            obj.id = this.lastID;
+            this.id = this.lastID;
             console.log(`${name} inserted`);
           }
         });
@@ -52,7 +49,7 @@ class Contact {
     }
   }
 
-  create(name, company, telp_number, email) {
+  static create(name, company, telp_number, email) {
     if(Contact.emailValidate(email)) {
       if (Contact.telp_numberValidate(telp_number)) {
         db.serialize(function() {
@@ -74,7 +71,7 @@ class Contact {
     }
   }
 
-  read() {
+  static read() {
     db.serialize(function() {
       let query = `select * from contacts`
       db.all(query, (err,rows) => {
@@ -96,7 +93,7 @@ class Contact {
     })
   }
 
-  update(id, name, company, telp_number, email) {
+  static update(id, name, company, telp_number, email) {
     db.serialize(function() {
       let query = `update contacts
                    set name = '${name}', company = '${company}',
@@ -112,7 +109,7 @@ class Contact {
     })
   }
 
-  delete_data(id) {
+  static delete_data(id) {
     db.serialize(function() {
       let query = `delete from contacts where id = ${id}`
       db.run(query, (err) => {
@@ -180,19 +177,19 @@ INNER JOIN Shippers ON Orders.ShipperID = Shippers.ShipperID);
 
 }
 
-let replServer = repl.start({
-  prompt : '>>',
-  input  : process.stdin,
-  output : process.stdout
-
-})
-
-let run = new Contact()
-
-replServer.context.create = run.create
-replServer.context.read = run.read
-replServer.context.delete_data = run.delete_data
-replServer.context.update = run.update
-replServer.context.show = run.show
+// let replServer = repl.start({
+//   prompt : '>>',
+//   input  : process.stdin,
+//   output : process.stdout
+//
+// })
+//
+// let run = new Contact()
+//
+// replServer.context.create = run.create
+// replServer.context.read = run.read
+// replServer.context.delete_data = run.delete_data
+// replServer.context.update = run.update
+// replServer.context.show = run.show
 
 export default Contact

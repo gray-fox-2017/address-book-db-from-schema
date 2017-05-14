@@ -17,9 +17,9 @@ class Group {
     this.name = name || ''
     this.id = null
   }
-  save() {
+  static save() {
     if (this.id === null) {
-      db.serialize(function() { 
+      db.serialize(function() {
         let q = `INSERT INTO groups (name) VALUES ('${name}')`
         db.run(q,function(err) {
           if (err) {
@@ -43,7 +43,7 @@ class Group {
     }
   }
 
-  create(name) {
+  static create(name) {
         db.serialize(function() {
           let query = `insert into groups (name) VALUES ('${name}')`
           db.run(query, (err) => {
@@ -56,7 +56,7 @@ class Group {
         })
   }
 
-  read() {
+  static read() {
     db.serialize(function() {
       let query = `select * from groups`
       db.all(query, (err,rows) => {
@@ -75,7 +75,7 @@ class Group {
     })
   }
 
-  update(id, name) {
+  static update(id, name) {
     db.serialize(function() {
       let query = `update groups
                    set name = '${name}'
@@ -90,7 +90,7 @@ class Group {
     })
   }
 
-  delete_data(id) {
+  static delete_data(id) {
     db.serialize(function() {
       let query = `delete from groups where id = ${id}`
       db.run(query, (err) => {
@@ -104,19 +104,19 @@ class Group {
   }
 }
 
-let replServer = repl.start({
-  prompt : '>>',
-  input  : process.stdin,
-  output : process.stdout
-
-})
-
-let run = new Group()
-
-replServer.context.create = run.create
-replServer.context.read = run.read
-replServer.context.delete_data = run.delete_data
-replServer.context.update = run.update
+// let replServer = repl.start({
+//   prompt : '>>',
+//   input  : process.stdin,
+//   output : process.stdout
+//
+// })
+//
+// let run = new Group()
+//
+// replServer.context.create = run.create
+// replServer.context.read = run.read
+// replServer.context.delete_data = run.delete_data
+// replServer.context.update = run.update
 
 export default Group
 

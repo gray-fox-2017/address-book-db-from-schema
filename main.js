@@ -1,8 +1,8 @@
 "use strict"
 
-import Contact from "./contacts.js"
-import Group from "./groups.js"
-import ContactGroup from "./contact-groups.js"
+import Contact from "./contact.js"
+import Group from "./group.js"
+import ContactGroup from "./contact-group.js"
 
 const repl = require('repl')
 
@@ -10,7 +10,7 @@ let replServer = repl.start({
   prompt : '>>',
   input  : process.stdin,
   output : process.stdout
-}) 
+})
 
 function help() {
   console.log('-------------------------------------------------------------------------');
@@ -21,6 +21,7 @@ function help() {
   console.log("         Contact.update(id, attribute, value)                   Update contact record by ID");
   console.log("         Contact.delete(id)                                     Delete contact record by ID");
   console.log("         Contact.show()                                         Showing all contact records");
+  console.log("         Contact.read()                                         Showing all contact records");
   console.log("         Group.create(name)                                     Adding new group record");
   console.log("         Group.update(id, name, value)                          Update group record by ID");
   console.log("         Group.delete(id)                                       Delete group record by ID");

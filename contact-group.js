@@ -14,7 +14,7 @@ class ContactGroup {
 
   }
 
-  save() {
+  static save() {
     if (this.id === null) {
       db.serialize(function() {
         let q = `INSERT INTO groups_contacts (id_groups, id_contacts) VALUES ('${id_groups}','${id_contacts}')`
@@ -41,10 +41,10 @@ class ContactGroup {
     }
   }
 
-  assign(id_groups, id_contacts) {
+  static assign(id_groups, id_contacts) {
     db.serialize(function() {
       let q = `insert into groups_contacts (id_groups, id_contacts) VALUES ('${id_groups}','${id_contacts}')`
-      db.run(q, function(err) => {
+      db.run(q, (err) => {
         if (err) {
           console.log(err);
         } else {
