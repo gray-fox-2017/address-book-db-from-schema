@@ -47,6 +47,7 @@ class Groups{
 
   static delete(db,id){
     let query = `Delete from Groups where id = '${id}'`
+    let query2 = `Delete from ContactsGroups where group_id = '${id}'`
     db.serialize(()=>{
       db.run(query,(err)=>{
         if(err){
@@ -56,9 +57,17 @@ class Groups{
           console.log(`Group ${id} Deleted!`);
         }
       })
+      db.run(query2,(err)=>{
+        if(err){
+          console.log(err);
+        }
+        else{
+          console.log(`ContactsGroupsGroup ${id} Deleted!`);
+        }
+      })
     })
   }
-
 }
+
 
 module.exports = Groups
