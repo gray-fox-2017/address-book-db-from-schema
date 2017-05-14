@@ -32,3 +32,6 @@ replServer.context.help = help;
 replServer.context.Contact = Contact;
 replServer.context.ContactGroup = ContactGroup;
 replServer.context.Group = Group;
+
+let person = new Contact({name: "Erwin Ramadhan"});
+replServer.context.person = person;

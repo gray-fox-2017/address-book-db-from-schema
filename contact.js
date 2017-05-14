@@ -25,35 +25,27 @@ class Contact {
     email = this.email,
     obj = this;
 
-    if (Contact.emailValidation(email) || email === null) {
-      if (Contact.phoneValidation(telp_number) || telp_number === null) {
-        if (id === null) {
-          db.serialize(function() {
-            db.run(`INSERT INTO contact (name, company, telp_number, email) VALUES ('${name}', '${company}', '${telp_number}', '${email}');`,function(err) {
-              if (err) {
-                console.log(err);
-              } else {
-                obj.id = this.lastID;
-                console.log(`${name} inserted`);
-              }
-            });
-          });
-        } else {
-          db.serialize(function() {
-            db.run(`UPDATE contact SET name = '${name}', company = '${company}', telp_number = '${telp_number}', email = '${email}' WHERE id = ${id};`, function(err) {
-              if (err) {
-                console.log(err);
-              } else {
-                console.log(`id ${id} updated`);
-              }
-            });
-          });
-        }
-      } else {
-        console.log("Phone number is not valid");
-      }
+    if (id === null) {
+      db.serialize(function() {
+        db.run(`INSERT INTO contact (name, company, telp_number, email) VALUES ('${name}', '${company}', '${telp_number}', '${email}');`,function(err) {
+          if (err) {
+            console.log(err);
+          } else {
+            obj.id = this.lastID;
+            console.log(`${name} inserted`);
+          }
+        });
+      });
     } else {
-      console.log("Email is not valid");
+      db.serialize(function() {
+        db.run(`UPDATE contact SET name = '${name}', company = '${company}', telp_number = '${telp_number}', email = '${email}' WHERE id = ${id};`, function(err) {
+          if (err) {
+            console.log(err);
+          } else {
+            console.log(`id ${id} updated`);
+          }
+        });
+      });
     }
 
   }
