@@ -1,0 +1,28 @@
+[
+    {
+        name: "Shabrina Virta",
+        company: "Ingelieur",
+        telp_number: "081234567890",
+        email:"shabrina@virta.com"
+    }, {
+        name: "Arsene Wenger",
+        company: "Arsenal",
+        telp_number: "084444444444",
+        email: "arsene@arsenal.com"
+    }, {
+        name: "Jose Mourinho",
+        company: "Manchester United",
+        telp_number: "086666666666",
+        email: "jose@united.com"
+    }, {
+        name: "Antonio Conte",
+        company: "Chelsea",
+        telp_number: "0817946637",
+        email: "antonio@chelsea.com"
+    }, {
+        name: "Pep Guardiola",
+        company: "Manchester City",
+        telp_number: "085555555555",
+        email: "pep@city.com"
+    }
+]
