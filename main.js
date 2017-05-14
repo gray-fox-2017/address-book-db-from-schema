@@ -1,6 +1,6 @@
 const Contacts = require('./contact.js')
 const Groups = require('./group.js')
-const contactsGroups = require('./contact-group.js')
+const ContactsGroups = require('./contact-group.js')
 
 const repl = require('repl')
 const replServer = repl.start({
@@ -81,7 +81,7 @@ function updateContact(column,new_value,id){
   Contacts.update(db,column,new_value,id)
 }
 function deleteContact(id) {
-  Contacts.deletes(db,id)
+  Contacts.delete(db,id)
 }
 
 function addGroup(obj){
@@ -95,7 +95,21 @@ function updateGroup(new_value,id){
   Groups.update(db,new_value,id)
 }
 function deleteGroup(id) {
-  Groups.deletes(db,id)
+  Groups.delete(db,id)
+}
+
+function addContactGroup(obj){
+  ContactsGroups.add(db,obj)
+}
+function showContactGroup(){
+  ContactsGroups.show(db)
+}
+
+function updateContactGroup(new_value,id){
+  ContactsGroups.update(db,new_value,id)
+}
+function deleteContactGroup(id) {
+  ContactsGroups.delete(db,id)
 }
 
 function showRelation(){
@@ -129,4 +143,12 @@ replServer.context.addGroup = addGroup
 replServer.context.showGroup = showGroup
 replServer.context.updateGroup = updateGroup
 replServer.context.deleteGroup = deleteGroup
+
+replServer.context.addContactGroup = addContactGroup
+replServer.context.showContactGroup = showContactGroup
+replServer.context.updateContactGroup = updateContactGroup
+replServer.context.deleteContactGroup = deleteContactGroup
+
+replServer.context.showRelation = showRelation
+
 
