@@ -17,11 +17,11 @@ class Kelompok{
   }
 
   static deleteGroup(id) {
-    let query = `DELETE FROM kelompok WHERE id = ${id}`
+    let query = `DELETE FROM kelompok WHERE id = ${id}; DELETE FROM kontak_kelompok WHERE kelompok_id = ${id}`
     db.serialize(function () {
       db.run(query, function (err) {
         if (err) console.log(err)
-        else console.log(`Group terhapus!!`);
+        else console.log(`Group dan relasinya telah terhapus!!`);
       })
     })
   }

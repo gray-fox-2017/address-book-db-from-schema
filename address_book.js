@@ -14,7 +14,10 @@ const KontakKelompok = require('./contactGroup.js');
 
 class AddressBook{
   static showAllContact() {
-    let query = `SELECT * FROM kontak`;
+    let query = `SELECT kt.id, kt.nama, kt.telp, kt.kompeni, kt.email, kl.nama_kelompok
+    FROM kontak AS kt
+    JOIN kontak_kelompok AS kk ON kk.kontak_id = kt.id
+    JOIN kelompok AS kl ON kl.id = kk.kelompok_id`;
     db.serialize(function() {
       db.all(query, function(err,row) {
         if (err) {
