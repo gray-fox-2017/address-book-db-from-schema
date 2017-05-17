@@ -48,10 +48,8 @@ let db = new sqlite.Database(file);
   }
 
   static showGroup(){
-    let show = `SELECT groups.*, contact_detail.name AS name
-                FROM groups, (SELECT contacts.name, contact_groups.group_id FROM contacts, contact_groups
-                              WHERE contact_groups.contact_id = contacts.id) AS contact_detail
-                WHERE groups.id = contact_detail.group_id`;
+    let show = `SELECT groups.name as nama_groups, contacts.* from contacts left join contact_groups on contacts.id = contact_groups.contact_id
+                    left join groups on groups.id = contact_groups.group_id`;
     db.serialize(() => {
       db.each(show, (err,rows) => {
         if (err) {

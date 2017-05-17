@@ -12,7 +12,7 @@ let db = new sqlite.Database(file);
     static addData(name,company,telp_number,email){
       let regexPhone = /^\d{10,13}$/;
       // let regexEmail = ;
-      if(regexPhone.test(phone) === false){
+      if(regexPhone.test(telp_number) === false){
         console.log("Incorrect phone. Please input numbers between 10-13 length.");
       }else {
         let addData = `INSERT INTO contacts(name,company,telp_number,email)
@@ -57,12 +57,14 @@ let db = new sqlite.Database(file);
     }
 
     static showData(){
-      let showData = `SELECT * FROM contacts`;
+      let showData = `SELECT contacts.*, groups.name as nama_groups from contacts left join contact_groups on contacts.id = contact_groups.contact_id
+                      left join groups on groups.id = contact_groups.group_id`;
       db.serialize(function(){
         db.all(showData, function(err,rows){
           if (err) {
             console.log(err);
           }else {
+            console.log('jasckjcbdjb');
             console.log(rows);
           }
         });
